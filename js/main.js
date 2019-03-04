@@ -47,11 +47,11 @@
   });
 
   stop.addEventListener('click', function() {
-    clearTimeout(timerId);
+    clearTimeout(timerId);    // 停止
   });
 
   reset.addEventListener('click', function() {
-    elapsedTime = 0;
+    elapsedTime = 0;        // 0に戻す
     updateTimerText();
   });
 })();
