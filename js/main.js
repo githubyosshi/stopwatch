@@ -45,17 +45,25 @@
     }, 10);               // 10ミリ秒後に
   }
 
-  start.className = 'btn';
-  stop.className = 'btn inactive';
-  reset.className = 'btn inactive';
+  // start.className = 'btn';
+  // stop.className = 'btn inactive';
+  // reset.className = 'btn inactive';
 
+  function updateButtonState(startButtonState, stopButtonState, resetButtonState) {
+    start.className = startButtonState ? 'btn' : 'btn inactive';
+    stop.className = stopButtonState ? 'btn' : 'btn inactive';
+    reset.className = resetButtonState ? 'btn' : 'btn inactive';
+  }
+
+  updateButtonState(true, false, false);
 
   start.addEventListener('click', function() {
     if (isRunning === true) {
       return;             // 複数起動を行わない
     }
-    // start: false, stop: true, reset: false
     isRunning = true;
+    // start: false, stop: true, reset: false
+    updateButtonState(false, true, false);
     startTime = Date.now();
     countUp();            //計算実行
   });
@@ -66,6 +74,7 @@
     }
     isRunning = false;
     // start: true, stop: false, reset: true
+    updateButtonState(true, false, true);
     clearTimeout(timerId);    // 停止
     timeToAdd += Date.now() - startTime;  // 再開時の経過時間
   });
@@ -75,6 +84,7 @@
       return;               // 動作中はRsetを行わない
     }
     // start: true, stop: false, reset: false
+    updateButtonState(true, false, false);
     elapsedTime = 0;        // 0に戻す
     timeToAdd = 0;
     updateTimerText();
