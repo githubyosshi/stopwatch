@@ -19,3 +19,22 @@ body {
   font-size: 40px;
   margin-bottom: 15px;
 }
+
+.btn {
+  cursor: pointer;
+  font-weight: bold;
+  width: 80px;
+  background: #ddd;
+  height: 45px;
+  line-height: 45px;
+  float: left;
+  user-select: none;
+}
+
+.controls {
+  overflow: hidden;
+}
+
+.btn + .btn {
+  margin-left: 15px;
+}
