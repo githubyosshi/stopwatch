@@ -9,6 +9,7 @@
   var startTime;
   var elapsedTime = 0;    // 経過時間初期化
   var timerId;
+  var timeToAdd = 0;      // 再開した時からの経過時間
 
   function updateTimerText() {
     // 135.2秒経過したとして、135200 -> 02:15.200
@@ -34,7 +35,9 @@
 
   function countUp() {
     timerId = setTimeout(function() {
-      elapsedTime = Date.now() - startTime;
+      // elapsedTime = Date.now() - startTime;
+      // 再開時の経過時間を加える
+      elapsedTime = Date.now() - startTime + timeToAdd;
       // console.log(elapsedTime);
       updateTimerText();
       countUp();
@@ -48,10 +51,12 @@
 
   stop.addEventListener('click', function() {
     clearTimeout(timerId);    // 停止
+    timeToAdd += Date.now() - startTime;  // 再開時の経過時間
   });
 
   reset.addEventListener('click', function() {
     elapsedTime = 0;        // 0に戻す
+    timeToAdd = 0;
     updateTimerText();
   });
 })();
