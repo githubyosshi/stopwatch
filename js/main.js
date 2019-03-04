@@ -8,6 +8,7 @@
 
   var startTime;
   var elapsedTime = 0;    // 経過時間初期化
+  var timerId;
 
   function updateTimerText() {
     // 135.2秒経過したとして、135200 -> 02:15.200
@@ -17,7 +18,7 @@
     var m = Math.floor(elapsedTime / 60000);    // 小数点以下切捨て
     var s = Math.floor(elapsedTime % 60000 / 1000);
     var ms = elapsedTime % 1000;
-    
+
     //  3 -> '03'
     // 12 -> '12'
 
@@ -32,7 +33,7 @@
   }
 
   function countUp() {
-    setTimeout(function() {
+    timerId = setTimeout(function() {
       elapsedTime = Date.now() - startTime;
       // console.log(elapsedTime);
       updateTimerText();
@@ -43,5 +44,14 @@
   start.addEventListener('click', function() {
     startTime = Date.now();
     countUp();            //計算実行
+  });
+
+  stop.addEventListener('click', function() {
+    clearTimeout(timerId);
+  });
+
+  reset.addEventListener('click', function() {
+    elapsedTime = 0;
+    updateTimerText();
   });
 })();
