@@ -17,6 +17,17 @@
     var m = Math.floor(elapsedTime / 60000);    // 小数点以下切捨て
     var s = Math.floor(elapsedTime % 60000 / 1000);
     var ms = elapsedTime % 1000;
+    
+    //  3 -> '03'
+    // 12 -> '12'
+
+    //  3 -> '0' +  3 -> '03'
+    // 12 -> '0' + 12 -> '012'
+
+    m = ('0' + m).slice(-2);    //末尾2桁
+    s = ('0' + s).slice(-2);
+    ms = ('00' + ms).slice(-3);
+
     timer.textContent = m + ':' + s + '.' + ms; // timer表示
   }
 
