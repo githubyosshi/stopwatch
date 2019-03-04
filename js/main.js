@@ -17,7 +17,7 @@
     var m = Math.floor(elapsedTime / 60000);    // 小数点以下切捨て
     var s = Math.floor(elapsedTime % 60000 / 1000);
     var ms = elapsedTime % 1000;
-    timer.textContent = m + ':' + s + '.' + ms;
+    timer.textContent = m + ':' + s + '.' + ms; // timer表示
   }
 
   function countUp() {
