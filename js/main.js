@@ -45,10 +45,16 @@
     }, 10);               // 10ミリ秒後に
   }
 
+  start.className = 'btn';
+  stop.className = 'btn inactive';
+  reset.className = 'btn inactive';
+
+
   start.addEventListener('click', function() {
     if (isRunning === true) {
       return;             // 複数起動を行わない
     }
+    // start: false, stop: true, reset: false
     isRunning = true;
     startTime = Date.now();
     countUp();            //計算実行
@@ -59,6 +65,7 @@
       return;             // timeToAddを何度も行わない
     }
     isRunning = false;
+    // start: true, stop: false, reset: true
     clearTimeout(timerId);    // 停止
     timeToAdd += Date.now() - startTime;  // 再開時の経過時間
   });
@@ -67,6 +74,7 @@
     if (isRunning === true) {
       return;               // 動作中はRsetを行わない
     }
+    // start: true, stop: false, reset: false
     elapsedTime = 0;        // 0に戻す
     timeToAdd = 0;
     updateTimerText();
